@@ -6,7 +6,7 @@ const Hash = use('Hash')
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
-/** 
+/**
 *  @swagger
 *  definitions:
 *    User:
@@ -56,6 +56,16 @@ class User extends Model {
    */
   tokens () {
     return this.hasMany('App/Models/Token')
+  }
+
+  estabelecimentos() {
+    return this.belongsToMany('App/Models/Estabelecimento')
+    .pivotTable('user_estabelecimentos');
+  }
+
+  convenios() {
+    return this.belongsToMany('App/Models/Convenio')
+    .pivotTable('user_convenios');
   }
 }
 

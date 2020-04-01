@@ -95,6 +95,19 @@ Route.group(() => {
 }).prefix('api/v1');
 
 Route.group(() => {
+  Route.get('/users', 'UserController.all')
+  .middleware(['auth:jwt']);
+  Route.get('/users/statistics', 'UserController.getPercent')
+  .middleware(['auth:jwt']);
+  Route.get('/users/:id', 'UserController.get')
+  .middleware(['auth:jwt']);
+  Route.put('/users/:id', 'UserController.update')
+  .middleware(['auth:jwt']);
+  Route.delete('/users/:id', 'UserController.destroy')
+  .middleware(['auth:jwt']);
+}).prefix('api/v1');
+
+Route.group(() => {
     Route.post('/users', 'UserController.create')
     Route.post('/sessions', 'SessionController.create')
     Route.get('/sessions/me', 'SessionController.me')

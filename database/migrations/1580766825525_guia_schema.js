@@ -11,7 +11,6 @@ class GuiaSchema extends Schema {
 
       table.integer('convenios_id').unsigned().references('id').inTable('convenios')
       table.integer('estabelecimento_id')
-      
 
       table.datetime('dt_atendimento')
       table.datetime('dt_validade')

@@ -2,11 +2,11 @@
 
 class SessionController {
 
-    async create ({ request, auth }) { 
+    async create ({ request, auth }) {
         const { email, password } = request.all()
-    
+
         const token = await auth.attempt(email, password)
-    
+
         return token
       }
 
@@ -17,7 +17,7 @@ class SessionController {
         //response.send('You are not logged in')
       }
     }
-    
+
 }
 
 module.exports = SessionController
