@@ -30,8 +30,15 @@
     "@adonisjs/validator": "^5.0.6",
     "adonis-auth": "^1.0.7",
     "adonis-swagger": "^1.2.9",
+    "express-fileupload": "^1.1.7-alpha.2",
+    "moment": "^2.25.3",
     "mysql": "^2.18.1",
-    "util.promisify": "^1.0.1"
+    "node-xlsx": "^0.15.0",
+    "read-excel-file": "^4.0.6",
+    "utf8": "^3.0.0",
+    "util.promisify": "^1.0.1",
+    "xml2js": "^0.4.23",
+    "xml2json": "^0.12.0"
   },
   "devDependencies": {},
   "autoload": {

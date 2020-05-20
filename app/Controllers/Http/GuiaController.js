@@ -5,6 +5,9 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const GuiaService = use('App/Services/GuiaService')
+const LoteService = use('App/Services/LoteService')
+
+const Helpers = use('Helpers')
 
 /**
  * Resourceful controller for interacting with guias
@@ -13,8 +16,12 @@ class GuiaController {
   /** @type {typeof import('App/Services/Abstract/Service')} */
   service;
 
+  /** @type {typeof import('App/Services/Abstract/Service')} */
+  loteService;
+
   constructor() {
     this.service = new GuiaService()
+    this.loteService = new LoteService()
   }
 
  /**
@@ -101,6 +108,36 @@ class GuiaController {
     let id = request.params.id
 
     return this.service.delete(id)
+  }
+
+  async uploadFile({ request, auth }) {
+    let { convenio, type } = request.all()
+
+    const upload = request.file('upload', {
+      size: '2mb'
+    })
+    let fname   = `${new Date().getTime()}.${upload.extname}`
+    let dir     = 'upload/'
+    let tmpFile = Helpers.tmpPath(dir)
+
+    await upload.move(tmpFile, {
+        name: fname
+    })
+
+    if (!upload.moved()) {
+        return (upload.error(), 'Error moving files', 500)
+    }
+
+    let file = tmpFile + fname
+    let user = await auth.getUser()
+
+    await this.service.executeFile(file, convenio, type, user.toJSON())
+  }
+
+  async allLote ({ request, response }) {
+    let data = this.loteService.getAllLote()
+
+    return data;
   }
 }
 

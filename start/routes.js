@@ -58,9 +58,13 @@ Route.group(() => {
 Route.group(() => {
     Route.get('/guias', 'GuiaController.all')
     .middleware(['auth:jwt']);
+    Route.get('/guias/lotes', 'GuiaController.allLote')
+    .middleware(['auth:jwt']);
     Route.get('/guias/:id', 'GuiaController.get')
     .middleware(['auth:jwt']);
     Route.post('/guias', 'GuiaController.store')
+    .middleware(['auth:jwt']);
+    Route.post('/guias/upload', 'GuiaController.uploadFile')
     .middleware(['auth:jwt']);
     Route.put('/guias/:id', 'GuiaController.update')
     .middleware(['auth:jwt']);
@@ -112,5 +116,11 @@ Route.group(() => {
     Route.post('/sessions', 'SessionController.create')
     Route.get('/sessions/me', 'SessionController.me')
     .middleware(['auth:jwt']);
+
+}).prefix('api/v1');
+
+Route.group(() => {
+  Route.get('/report/guia/faturada', 'RelatoriosController.guiasFaturadas')
+  .middleware(['auth:jwt']);
 
 }).prefix('api/v1');

@@ -7,7 +7,7 @@ class ProfissionalSchema extends Schema {
   up () {
     this.create('profissionals', (table) => {
       table.increments()
-      table.integer(`co_profissional`).notNullable()
+      table.integer(`co_profissional`)
       table.integer('especialidade_id').unsigned().references('id').inTable('especialidades')
       table.integer('usuario_id').unsigned().references('id').inTable('users')
 

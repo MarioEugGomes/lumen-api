@@ -17,7 +17,7 @@ class ConvenioController {
   constructor() {
     this.service = new ConvenioService()
   }
-  
+
   /**
    * @swagger
    * /api/convenios:
@@ -71,9 +71,9 @@ class ConvenioController {
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
-    let params = request.params
+    let params = request.all()
 
-    return this.service.save(params)
+    return this.service.register(params)
   }
 
   /**

@@ -4,13 +4,12 @@ const Service = use('App/Services/Abstract/Service')
 const Convenio = use('App/Models/Convenio')
 
 class ConvenioService extends Service {
-    
     constructor() {
         super(Convenio);
     }
 
-    save(data) {
-        const convenio = this.save({ nome: data["nome"] });
+    register(data) {
+        const convenio = this.save(data);
 
         return convenio;
     }

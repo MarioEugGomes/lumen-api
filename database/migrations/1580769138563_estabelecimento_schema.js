@@ -7,7 +7,7 @@ class EstabelecimentoSchema extends Schema {
   up () {
     this.create('estabelecimentos', (table) => {
       table.increments()
-      table.string(`nome`).notNullable()
+      table.string(`nome`).notNullable().unique()
       table.boolean(`ativo`).defaultTo(true)
       table.timestamps()
     })

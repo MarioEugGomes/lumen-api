@@ -16,8 +16,8 @@ class GuiaSchema extends Schema {
       table.datetime('dt_validade')
 
       table.string(`no_paciente`).notNullable()
-      table.string(`tp_consulta`).notNullable()
-      table.string(`tp_saida`).notNullable()
+      table.string(`tp_consulta`)
+      table.string(`tp_saida`)
 
       table.integer('co_tabela')
       table.integer('co_procedimento')
